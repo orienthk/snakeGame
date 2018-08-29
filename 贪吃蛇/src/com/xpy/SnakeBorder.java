@@ -5,13 +5,13 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-
+  
 import javax.swing.*;
 
 public class SnakeBorder extends JPanel implements Runnable, KeyListener {
 	private static final long serialVersionUID = 1L;
 	private Snake[] images = new Snake[151];
-	int score;// ÓÃÓÚÍ³¼Æ·ÖÊı£¬Ã¿Ôö¼ÓÒ»½Ú£¬Ôò¼Ó1
+	int score;// ç”¨äºç»Ÿè®¡åˆ†æ•°ï¼Œæ¯å¢åŠ ä¸€èŠ‚ï¼Œåˆ™åŠ 1
 	Image grey;
 	Image head;
 	Image body;
@@ -22,7 +22,7 @@ public class SnakeBorder extends JPanel implements Runnable, KeyListener {
 	Snake snakeFood;
 	Snake snakeBody;
 	boolean supe;
-	long time;// Ê±¼ä¿ØÖÆ,Ä¬ÈÏÎª0.5sÒÆÒ»¸ñ,Ã¿Ôö¼ÓÒ»¸ñ³¤¶È£¬time¼Ó¿ì0.03sÖ±µ½time=0.2sÎªÖ¹
+	long time;// æ—¶é—´æ§åˆ¶,é»˜è®¤ä¸º0.5sç§»ä¸€æ ¼,æ¯å¢åŠ ä¸€æ ¼é•¿åº¦ï¼ŒtimeåŠ å¿«0.03sç›´åˆ°time=0.2sä¸ºæ­¢
 	boolean gameover;
 
 	public SnakeBorder() {
@@ -30,7 +30,7 @@ public class SnakeBorder extends JPanel implements Runnable, KeyListener {
 		init();
 	}
 
-	// ³õÊ¼»¯º¯Êı
+	// åˆå§‹åŒ–å‡½æ•°
 	public void init() {
 		score = 1;
 		time = 500;
@@ -52,11 +52,11 @@ public class SnakeBorder extends JPanel implements Runnable, KeyListener {
 				k++;
 			}
 		}
-		// ½«Ì°³ÔÉßµÚÒ»´Î³öÏÖ¿ØÖÆÔÚ2~6ÁĞ£¬1~5ĞĞÖ®ÄÚ
+		// å°†è´ªåƒè›‡ç¬¬ä¸€æ¬¡å‡ºç°æ§åˆ¶åœ¨2~6åˆ—ï¼Œ1~5è¡Œä¹‹å†…
 		while ((location % 15 >= 6) || (location % 15 < 2) || location > 90) {
 			location = (int) (Math.random() * 150);
 		}
-		// »ñÈ¡Ì°³ÔÉßÎ»ÖÃ
+		// è·å–è´ªåƒè›‡ä½ç½®
 		snakeHead = new Snake();
 		snakeHead.x = images[location].x;
 		snakeHead.y = images[location].y;
@@ -64,7 +64,7 @@ public class SnakeBorder extends JPanel implements Runnable, KeyListener {
 		snakeHead.image = head;
 
 		snake.add(snakeHead);
-		// Ê³Îï³öÏÖ
+		// é£Ÿç‰©å‡ºç°
 		produceFood();
 	}
 
@@ -81,7 +81,7 @@ public class SnakeBorder extends JPanel implements Runnable, KeyListener {
 	}
 
 	private void produceFood() {
-		// Ê³Îï²»ÄÜ³öÏÖËÄ¸ö½ÇÂä
+		// é£Ÿç‰©ä¸èƒ½å‡ºç°å››ä¸ªè§’è½
 		boolean judge = false;
 		while (location == 1 || location == 15 || location == 135
 				|| location == 150 || !judge) {
@@ -101,7 +101,7 @@ public class SnakeBorder extends JPanel implements Runnable, KeyListener {
 		snakeFood.image = food;
 	}
 
-	// ³Ôµ½Ê³Îï
+	// åƒåˆ°é£Ÿç‰©
 	private void eatFood() {
 		int x = snake.get(0).x;
 		int y = snake.get(0).y;
@@ -124,9 +124,9 @@ public class SnakeBorder extends JPanel implements Runnable, KeyListener {
 			snakeBody.image = body;
 			snakeBody.dir = snake.get(snake.size() - 1).dir;
 			snake.add(snakeBody);
-			score++;// ·ÖÊı¼Ó1
+			score++;// åˆ†æ•°åŠ 1
 			if (time >= 200)
-				time = time - 30;// Ã¿Ôö¼ÓÒ»½Ú£¬Ê±¼ä¼Ó¿ì0.03s
+				time = time - 30;// æ¯å¢åŠ ä¸€èŠ‚ï¼Œæ—¶é—´åŠ å¿«0.03s
 			produceFood();
 			repaint();
 		}
@@ -134,20 +134,20 @@ public class SnakeBorder extends JPanel implements Runnable, KeyListener {
 
 	private void moved() {
 		for (int k = 0; k < snake.size(); k++) {
-			// ÏòÉÏ
+			// å‘ä¸Š
 			if (snake.get(k).dir == 1) {
 				snake.get(k).y = snake.get(k).y - 60;
-			} else if (snake.get(k).dir == 2) {// ÏòÏÂ
+			} else if (snake.get(k).dir == 2) {// å‘ä¸‹
 				snake.get(k).y = snake.get(k).y + 60;
-			} else if (snake.get(k).dir == 3) {// Ïò×ó
+			} else if (snake.get(k).dir == 3) {// å‘å·¦
 				snake.get(k).x = snake.get(k).x - 60;
-			} else if (snake.get(k).dir == 4) {// ÓÒ
+			} else if (snake.get(k).dir == 4) {// å³
 				snake.get(k).x = snake.get(k).x + 60;
 
 			}
 		}
-		eatFood();// ÅĞ¶ÏÊÇ·ñ³Ôµ½Ê³Îï
-		// ÅĞ¶Ï·½Ïò
+		eatFood();// åˆ¤æ–­æ˜¯å¦åƒåˆ°é£Ÿç‰©
+		// åˆ¤æ–­æ–¹å‘
 		for (int i = snake.size() - 1; i > 0; i--) {
 			if (snake.get(i).dir != snake.get(i - 1).dir)
 				snake.get(i).dir = snake.get(i - 1).dir;
@@ -156,12 +156,12 @@ public class SnakeBorder extends JPanel implements Runnable, KeyListener {
 
 	private void isGameOver() {
 		if ((snake.get(0).x > 880) || (snake.get(0).x < 40)
-				|| (snake.get(0).y < 30) || (snake.get(0).y > 570)) {// Í·²¿Åöµ½ËÄ±Ú
+				|| (snake.get(0).y < 30) || (snake.get(0).y > 570)) {// å¤´éƒ¨ç¢°åˆ°å››å£
 			gameover = true;
 		} else {
 			for (int i = 1; i < snake.size(); i++) {
 				if ((snake.get(0).x == snake.get(i).x)
-						&& (snake.get(0).y == snake.get(i).y)) {// Í·²¿Åöµ½×Ô¼ºµÄÉíÌå
+						&& (snake.get(0).y == snake.get(i).y)) {// å¤´éƒ¨ç¢°åˆ°è‡ªå·±çš„èº«ä½“
 					gameover = true;
 					break;
 				}
@@ -169,13 +169,13 @@ public class SnakeBorder extends JPanel implements Runnable, KeyListener {
 		}
 		if (gameover) {
 			int choice = JOptionPane.showConfirmDialog(SnakeBorder.this,
-					"ÄãÊäÁË£¡ÊÇ·ñÔÙÀ´Ò»¾Ö£¿", null, JOptionPane.YES_NO_OPTION);
+					"ä½ è¾“äº†ï¼æ˜¯å¦å†æ¥ä¸€å±€ï¼Ÿ", null, JOptionPane.YES_NO_OPTION);
 			if (choice == JOptionPane.YES_OPTION) {
-				init();// ³õÊ¼»¯
-				resume();// Ïß³Ì¿ªÊ¼
-				repaint();// ÖØĞÂ»æÖÆ
+				init();// åˆå§‹åŒ–
+				resume();// çº¿ç¨‹å¼€å§‹
+				repaint();// é‡æ–°ç»˜åˆ¶
 			} else
-				System.exit(0);// ÍË³ö
+				System.exit(0);// é€€å‡º
 		}
 	}
 
@@ -190,7 +190,7 @@ public class SnakeBorder extends JPanel implements Runnable, KeyListener {
 					while (!supe) {
 						wait();
 					}
-					moved();// ÒÆ¶¯
+					moved();// ç§»åŠ¨
 					isGameOver();
 					if (!gameover)
 						repaint();
@@ -202,7 +202,7 @@ public class SnakeBorder extends JPanel implements Runnable, KeyListener {
 		}
 	}
 
-	// »½ĞÑÏß³Ì
+	// å”¤é†’çº¿ç¨‹
 	synchronized void resume() {
 		supe = true;
 		notify();
@@ -216,25 +216,25 @@ public class SnakeBorder extends JPanel implements Runnable, KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// ÏòÏÂ
+		// å‘ä¸‹
 		if (e.getKeyCode() == KeyEvent.VK_DOWN && snake.get(0).dir != 1) {
 			snake.get(0).dir = 2;
 			snake.get(0).image = new ImageIcon("pictures/head_down.png")
 					.getImage();
 		}
-		// ÉÏ
+		// ä¸Š
 		if (e.getKeyCode() == KeyEvent.VK_UP && snake.get(0).dir != 2) {
 			snake.get(0).dir = 1;
 			snake.get(0).image = new ImageIcon("pictures/head_up.png")
 					.getImage();
 		}
-		// ×ó
+		// å·¦
 		if (e.getKeyCode() == KeyEvent.VK_LEFT && snake.get(0).dir != 4) {
 			snake.get(0).dir = 3;
 			snake.get(0).image = new ImageIcon("pictures/head_left.png")
 					.getImage();
 		}
-		// ÓÒ
+		// å³
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT && snake.get(0).dir != 3) {
 			snake.get(0).dir = 4;
 			snake.get(0).image = new ImageIcon("pictures/head_right.png")
