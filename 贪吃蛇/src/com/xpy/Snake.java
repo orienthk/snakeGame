@@ -4,8 +4,8 @@ import java.awt.Image;
 
 public class Snake {
 public Image image;
-public int x;//Í¼Æ¬x×ø±ê
-public int y;//Í¼Æ¬y×ø±ê
-public int dir=4;//±íÊ¾·½Ïò1£ºÏòÉÏ£¬2£ºÏòÏÂ£¬3£º×ó£¬4£ºÓÒ,Ä¬ÈÏÍùÓÒ
+public int x;//å›¾ç‰‡xåæ ‡
+public int y;//å›¾ç‰‡yåæ ‡
+public int dir=4;//è¡¨ç¤ºæ–¹å‘1ï¼šå‘ä¸Šï¼Œ2ï¼šå‘ä¸‹ï¼Œ3ï¼šå·¦ï¼Œ4ï¼šå³,é»˜è®¤å¾€å³ï¼ˆï¼‰
 
 }
